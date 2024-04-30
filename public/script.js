@@ -44,19 +44,31 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-socket.on('init chat', (mensajes) =>
-{
-  console.log(mensajes);
-  mensajes.forEach(mensajeObjeto => {
-    const li = document.createElement("li")
-    li.innerHTML = mensajeObjeto.mensaje
+socket.on('init chat', (mensajes) => {
+  mensajes.forEach(mensajeOBJ => {
+    const li = document.createElement("li");
+    if (mensajeOBJ.mensaje.startsWith("https://")) {
+      const link = document.createElement("a");
+      link.href = mensajeOBJ.mensaje;
+      link.textContent = mensajeOBJ.mensaje;
+      li.appendChild(link);
+    } else {
+      li.textContent = mensajeOBJ.mensaje;
+    }
     messages.appendChild(li);
   });
-})
+});
 
 socket.on('chat message', (msg) => {
   const item = document.createElement('li');
-  item.textContent = msg;
+  if (msg.startsWith("https://")) {
+    const link = document.createElement("a");
+    link.href = msg;
+    link.textContent = msg;
+    item.appendChild(link);
+  } else {
+    item.textContent = msg;
+  }
   messages.appendChild(item);
   window.scrollTo(0, document.body.scrollHeight);
 });
