@@ -6,3 +6,6 @@ CREATE TABLE mensajes(
 );
 
 INSERT INTO mensajes (mensaje) VALUES ('hola mundo!');
+
+
+

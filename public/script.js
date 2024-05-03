@@ -45,7 +45,7 @@ form.addEventListener('submit', (e) => {
 });
 
 socket.on('init chat', (mensajes) => {
-  mensajes.forEach(mensajeOBJ => {
+  mensajes.reverse().forEach(mensajeOBJ => { // Invertir el orden de los nuevos mensajes del chat
     const li = document.createElement("li");
     if (mensajeOBJ.mensaje.startsWith("https://")) {
       const link = document.createElement("a");
@@ -58,6 +58,7 @@ socket.on('init chat', (mensajes) => {
     messages.appendChild(li);
   });
 });
+
 
 socket.on('chat message', (msg) => {
   const item = document.createElement('li');
