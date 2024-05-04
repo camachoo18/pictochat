@@ -2,7 +2,8 @@ const express = require("express");
 const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
-const {initDB, insertarMensaje, read} = require("./scripts/model.js");
+const {initDB, insertarMensaje, read,  insertarPuntoDibujo, obtenerPuntosDibujo} = require("./scripts/model.js");
+
 
 
 
@@ -22,18 +23,28 @@ app.get('/', (req, res) => {
   })
 
   io.on('connection', (socket) => {
-    console.log("Usuario Conectado")
-    const mensajes = read()
-    io.emit("init chat", mensajes)
+    console.log("Usuario Conectado");
+
+   
+    const mensajes = read();
+    io.emit("init chat", mensajes);
+
+    // Enviar puntos de dibujo al cliente
+    const puntosDibujo = obtenerPuntosDibujo();
+    socket.emit("init drawing", puntosDibujo);
+
     socket.on('chat message', (msg) => {
-      insertarMensaje(msg);
-      io.emit('chat message', msg);
+        insertarMensaje(msg);
+        io.emit('chat message', msg);
     });
     
     socket.on('drawing', (data) => {
-      io.emit('drawing', data);
+        insertarPuntoDibujo(data.x, data.y);
+        io.emit('drawing', data);
     });
-  });
+});
+
+
 
 server.listen(3000, () => {
     console.log('Servidor iniciado en el puerto 3000');
