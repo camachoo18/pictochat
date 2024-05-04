@@ -25,13 +25,12 @@ app.get('/', (req, res) => {
   io.on('connection', (socket) => {
     console.log("Usuario Conectado");
 
-   
+  
     const mensajes = read();
     io.emit("init chat", mensajes);
 
-    // Enviar puntos de dibujo al cliente
-    const puntosDibujo = obtenerPuntosDibujo();
-    socket.emit("init drawing", puntosDibujo);
+  
+    socket.emit("init drawing");
 
     socket.on('chat message', (msg) => {
         insertarMensaje(msg);
@@ -39,7 +38,6 @@ app.get('/', (req, res) => {
     });
     
     socket.on('drawing', (data) => {
-        insertarPuntoDibujo(data.x, data.y);
         io.emit('drawing', data);
     });
 });

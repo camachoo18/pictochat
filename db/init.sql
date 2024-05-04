@@ -1,18 +1,8 @@
-DROP TABLE IF EXISTS PuntosDibujo;
 DROP TABLE IF EXISTS mensajes;
-
 
 CREATE TABLE mensajes(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     mensaje TEXT NOT NULL
 );
 
-
-CREATE TABLE PuntosDibujo (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    x FLOAT NOT NULL,
-    y FLOAT NOT NULL
-);
-INSERT INTO mensajes (mensaje) VALUES ('¡Hola mundo!');
-INSERT INTO PuntosDibujo (x, y) VALUES (100, 100);
-INSERT INTO PuntosDibujo (x, y) VALUES (200, 200);
+INSERT INTO mensajes (mensaje) VALUES ('Hola')

@@ -23,21 +23,10 @@ function insertarMensaje(mensaje){
     db.prepare(`INSERT INTO mensajes (mensaje) VALUES (?)`).run(mensaje);
 }
 
-function insertarPuntoDibujo(x, y) {
-    db.prepare("INSERT INTO PuntosDibujo (x, y) VALUES (?, ?)").run(x, y);
-    
-}
 
-
-function obtenerPuntosDibujo() {
-     return db.prepare("SELECT * FROM PuntosDibujo").all();
-
-}
 
 module.exports = {
     initDB,
     insertarMensaje,
-    read,
-    insertarPuntoDibujo,
-    obtenerPuntosDibujo
+    read
 }
