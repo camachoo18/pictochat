@@ -38,6 +38,13 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  #herramienta-pincel{
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   input[type="submit"]{
     padding: 0.25rem;
     background: white;
@@ -68,4 +75,24 @@ canvas {
   position: absolute;
   top: 0;
   z-index: -1;
+  }
+  #brushSizeInput {
+    margin-right: 1rem;
+    position: top;
+    bottom: 3rem; 
+    left: 140px; 
+  }
+
+  #colorPincel {
+    margin-right: 1rem;
+    position: bottom;
+    bottom: 3rem; 
+    left: 140px; 
+  }
+
+  #InputColor {
+    margin-top: 1rem;
+    position: top;
+    bottom: 2rem;
+    left: 140px;
   }
