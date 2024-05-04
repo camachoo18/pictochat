@@ -66,10 +66,22 @@
     border-radius: 0.25rem;
     padding: 0.5rem;
   }
+
+  #btn-toggle-tool{
+    background: none;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+  }
   
   #btn-toggle-chat:hover, input[type="submit"]{
     background: #ddd;
   }
+
+  #btn-toggle-tool:hover, input[type="submit"]{
+    background: #ddd;
+  }
+
 
 canvas {
   position: absolute;

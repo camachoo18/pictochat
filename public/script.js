@@ -34,6 +34,19 @@ function toggleChat(){
     form.style.display = "none"
   }
 }
+
+function toggleTool(){
+  const herramientas = document.getElementById("herramientas");
+  const form1 = herramientas.querySelector("form");
+  herramientas.hidden = !herramientas.hidden;
+  if(form1.style.display === "none"){
+    form1.style.display = "flex";
+  } else {
+    form1.style.display = "none"
+  }
+}
+
+
  
 function setup() {
   createCanvas(windowWidth, windowHeight);
