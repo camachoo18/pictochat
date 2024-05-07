@@ -85,8 +85,37 @@ form.addEventListener('submit', (e) => {
     input.value = '';
   }
 });
-
+/*
 socket.on('init chat', (mensajes) => {
+  mensajes.reverse().forEach(mensajeOBJ => {
+    const li = document.createElement("li");
+    if (mensajeOBJ.mensaje.startsWith("https://")) {
+      const link = document.createElement("a");
+      link.href = mensajeOBJ.mensaje;
+      link.textContent = mensajeOBJ.mensaje;
+      li.appendChild(link);
+    } else {
+      li.textContent = mensajeOBJ.mensaje;
+    }
+    messages.appendChild(li);
+  });
+});
+*/
+
+fetch('/puntos')
+.then(response => response.json())
+.then(coord =>{
+  console.log(coord)
+  coord.forEach(punto => {
+    //stroke(punto.color);
+    //strokeWeight(punto.size);
+    line(punto.x1, punto.y1, punto.x2, punto.y2);
+  });
+});
+
+fetch('/messages')
+.then(response => response.json())
+.then(mensajes =>{
   mensajes.reverse().forEach(mensajeOBJ => {
     const li = document.createElement("li");
     if (mensajeOBJ.mensaje.startsWith("https://")) {
