@@ -14,19 +14,27 @@ function initDB(){
     })
 }
 
-function read(){
-    return db.prepare("SELECT * FROM mensajes ORDER BY id DESC LIMIT 5 ").all()
-    
+function readMensajes(){
+    return db.prepare("SELECT * FROM mensajes ORDER BY id DESC LIMIT 5 ").all()    
+}
+
+function readPuntos(){
+    return db.prepare("SELECT * FROM puntosDibujo").all()
 }
 
 function insertarMensaje(mensaje){
     db.prepare(`INSERT INTO mensajes (mensaje) VALUES (?)`).run(mensaje);
 }
 
+function insertarPuntosDibujo(x1, y1, x2, y2) {
+    db.prepare("INSERT INTO puntosDibujo (x1, y1, x2, y2) VALUES (?, ?, ?, ?)").run(x1, y1, x2, y2);
 
+}
 
 module.exports = {
     initDB,
     insertarMensaje,
-    read
+    insertarPuntosDibujo,
+    readMensajes,
+    readPuntos
 }
