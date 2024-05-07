@@ -2,7 +2,7 @@ const express = require("express");
 const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
-const {initDB, insertarMensaje, read,  insertarPuntoDibujo, obtenerPuntosDibujo} = require("./scripts/model.js");
+const {initDB, insertarMensaje, readMensajes, readPuntos, insertarPuntosDibujo} = require("./scripts/model.js");
 
 
 
@@ -14,19 +14,29 @@ const io = new Server(server);
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.send('¡Hola, mundo!');
-  });
+  res.send('¡Hola, mundo!');
+});
 
-  app.get("/reset", (req, res) =>{
-    initDB();
-    res.send('Base de datos reseteada');
-  })
+app.get("/reset", (req, res) =>{
+  initDB();
+  res.send('Base de datos reseteada');
+});
+
+app.get("/messages", (req, res) => {
+  const mensajes = readMensajes();
+  res.send(mensajes);
+});
+
+app.get("/puntos", (req, res) => {
+  const puntos = readPuntos();
+  res.send(puntos);
+});
 
   io.on('connection', (socket) => {
     console.log("Usuario Conectado");
 
   
-    const mensajes = read();
+    const mensajes = readMensajes();
     io.emit("init chat", mensajes);
 
   
@@ -38,6 +48,7 @@ app.get('/', (req, res) => {
     });
     
     socket.on('drawing', (data) => {
+        console.log(data); //llega todo ok al servidor
         io.emit('drawing', data);
     });
 });
