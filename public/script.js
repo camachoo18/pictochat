@@ -57,10 +57,6 @@ function setup() {
 
 function draw() {
   if (mouseIsPressed && !isDragging && isMouseMoving) {
-    stroke(pincelColor);
-    strokeWeight(pincelSize);
-    line(prevMouseX, prevMouseY, mouseX, mouseY);
-
     const data = {
       x1: prevMouseX,
       y1: prevMouseY,
