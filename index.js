@@ -48,10 +48,12 @@ app.get("/puntos", (req, res) => {
     });
     
     socket.on('drawing', (data) => {
-        console.log(data); //llega todo ok al servidor
-        insertarPuntosDibujo(data.x1, data.y1, data.x2, data.y2);
-        io.emit('drawing', data);
-    });
+      console.log(data); //llega todo ok al servidor
+      insertarPuntosDibujo(data.x1, data.y1, data.x2, data.y2, data.puntoSize, data.puntoColor); 
+      io.emit('drawing', data);
+  });
+  
+  
 });
 
 

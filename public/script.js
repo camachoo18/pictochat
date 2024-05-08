@@ -62,8 +62,8 @@ function draw() {
       y1: prevMouseY,
       x2: mouseX,
       y2: mouseY,
-      size: pincelSize,
-      color: pincelColor,
+      puntoSize: pincelSize, 
+      puntoColor: pincelColor, 
     };
     socket.emit('drawing', data);
 
@@ -72,11 +72,14 @@ function draw() {
   }
 }
 
+
 socket.on('drawing', (data) => {
-  stroke(data.color);
-  strokeWeight(data.size);
+  stroke(data.puntoColor); 
+  strokeWeight(data.puntoSize); 
   line(data.x1, data.y1, data.x2, data.y2);
 });
+
+
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -107,8 +110,8 @@ fetch('/puntos')
 .then(coord =>{
   console.log(coord)
   coord.forEach(punto => {
-    //stroke(punto.color);
-    //strokeWeight(punto.size);
+    stroke(punto.puntoColor); 
+    strokeWeight(punto.puntoSize); 
     line(punto.x1, punto.y1, punto.x2, punto.y2);
   });
 });

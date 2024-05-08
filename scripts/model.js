@@ -26,10 +26,10 @@ function insertarMensaje(mensaje){
     db.prepare(`INSERT INTO mensajes (mensaje) VALUES (?)`).run(mensaje);
 }
 
-function insertarPuntosDibujo(x1, y1, x2, y2) {
-    db.prepare("INSERT INTO puntosDibujo (x1, y1, x2, y2) VALUES (?, ?, ?, ?)").run(x1, y1, x2, y2);
-
+function insertarPuntosDibujo(x1, y1, x2, y2, size, color) { 
+    db.prepare("INSERT INTO puntosDibujo (x1, y1, x2, y2, size, color) VALUES (?, ?, ?, ?, ?, ?)").run(x1, y1, x2, y2, size, color); 
 }
+
 
 module.exports = {
     initDB,
